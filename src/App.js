@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from './components/Button'
+import TextField from './components/TextField'
 import { ThemeProvider } from 'styled-components'
 
 const themeSettings = {
@@ -18,6 +19,7 @@ export const App = () => {
     <ThemeProvider theme={themeSettings}>
       <div>
         <Button>Button</Button>
+        <TextField placeholder={'Its a placeholder'}/>
       </div>
     </ThemeProvider>
   )
