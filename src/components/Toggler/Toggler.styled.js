@@ -8,6 +8,7 @@ const DefaultStyledToggler = styled.div`
     width: 60px;
     height: 30px;
     margin: 12px;
+    display: inline-block;
 `
 
 const StyledToggler = styled(DefaultStyledToggler)(
@@ -33,7 +34,6 @@ const Switch = styled.label`
     cursor: pointer;
     position: relative;
     border-radius: 24px;
-    margin: 12px;
     width: 60px;
     height: 30px;
     display: flex;

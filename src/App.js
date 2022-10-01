@@ -3,6 +3,7 @@ import Button from './components/Button'
 import TextField from './components/TextField'
 import Toggler from './components/Toggler'
 import ProgressBar from './components/ProgressBar'
+import RadioButton from './components/RadioButton'
 import { ThemeProvider } from 'styled-components'
 
 const themeSettings = {
@@ -19,14 +20,27 @@ const themeSettings = {
 export const App = () => {
   return (
     <ThemeProvider theme={themeSettings}>
-      <div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'column' }}>
         <Button>Button</Button>
         <TextField placeholder={'Its a placeholder'}/>
         <Toggler/>
         <ProgressBar></ProgressBar>
+        <RadioButton></RadioButton>
       </div>
     </ThemeProvider>
   )
 }
 
 export default App
+
+// :root {
+//     --primary-light: #8abdff;
+//     --primary: #6d5dfc;
+//     --primary-dark: #5b0eeb;
+
+//     --white: #FFFFFF;
+//     --greyLight-1: #E4EBF5;
+//     --greyLight-2: #c8d0e7;
+//     --greyLight-3: #bec8e4;
+//     --greyDark: #9baacf;
+//   }

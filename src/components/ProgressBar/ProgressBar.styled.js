@@ -16,6 +16,7 @@ const DefaultStyledProgressBar = styled.div`
     margin: 12px;
     transition: .3s ease;
     position: relative;
+    display: inline-block;
 `
 
 const Progression = styled.div`
