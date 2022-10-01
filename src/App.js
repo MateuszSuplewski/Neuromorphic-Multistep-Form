@@ -5,6 +5,8 @@ import Toggler from './components/Toggler'
 import ProgressBar from './components/ProgressBar'
 import RadioButton from './components/RadioButton'
 import { ThemeProvider } from 'styled-components'
+import NavigateButton from './components/NavigateButton'
+import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 
 const themeSettings = {
   primaryColor: '#9baacf',
@@ -26,6 +28,16 @@ export const App = () => {
         <Toggler/>
         <ProgressBar></ProgressBar>
         <RadioButton></RadioButton>
+        <NavigateButton
+          icon={faAngleLeft}
+          size={'lg'}
+        >
+        </NavigateButton>
+        <NavigateButton
+          icon={faAngleRight}
+          size={'lg'}
+        >
+        </NavigateButton>
       </div>
     </ThemeProvider>
   )
