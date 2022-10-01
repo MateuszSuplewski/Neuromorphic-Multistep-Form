@@ -7,6 +7,7 @@ const DefaultStyledToggler = styled.div`
     --decorative: ${({ theme }) => theme.decorationColor};
     width: 60px;
     height: 30px;
+    margin: 12px;
 `
 
 const StyledToggler = styled(DefaultStyledToggler)(

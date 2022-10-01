@@ -2,6 +2,7 @@ import React from 'react'
 import Button from './components/Button'
 import TextField from './components/TextField'
 import Toggler from './components/Toggler'
+import ProgressBar from './components/ProgressBar'
 import { ThemeProvider } from 'styled-components'
 
 const themeSettings = {
@@ -22,6 +23,7 @@ export const App = () => {
         <Button>Button</Button>
         <TextField placeholder={'Its a placeholder'}/>
         <Toggler/>
+        <ProgressBar></ProgressBar>
       </div>
     </ThemeProvider>
   )
