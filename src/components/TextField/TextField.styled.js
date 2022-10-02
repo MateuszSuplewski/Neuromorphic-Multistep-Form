@@ -10,16 +10,16 @@ const DefaultStyledTextField = styled.input`
     width: 130px;
     height: 35px;
     padding: 3px 20px;
+    margin: 12px;
     border-radius: 26px;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    transition: .3s ease;
     color: var(--primary);
     background-color: var(--primary-bg);
-    border: none;
     box-shadow: inset 2px 2px 4px var(--shadow-dark), inset -2px -2px 4px var(--shadow-light);
-    margin: 12px;
-    font-weight: bold;
-    transition: .3s ease;
-    outline: none;
-    text-align: center;
 
     &:focus {
         box-shadow: 4px 4px 6px var(--shadow-dark), -4px -4px 6px var(--shadow-light);
@@ -31,8 +31,13 @@ const DefaultStyledTextField = styled.input`
 
 `
 
+const Label = styled.label`
+    display: flex;
+    align-items: center;
+`
+
 const StyledTextField = styled(DefaultStyledTextField)(
   ({ style }) => style
 )
 
-export default StyledTextField
+export { StyledTextField, Label }

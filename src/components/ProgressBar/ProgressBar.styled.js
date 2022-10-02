@@ -13,7 +13,7 @@ const DefaultStyledProgressBar = styled.div`
     color: var(--primary);
     background-color: var(--primary-bg);
     box-shadow:  4px 4px 6px var(--shadow-dark), -4px -4px 6px var(--shadow-light);
-    margin: 12px;
+    margin: 12px 12px 40px 12px;
     transition: .3s ease;
     position: relative;
     display: inline-block;

@@ -9,12 +9,15 @@ const RadioButton = (props) => {
         type={'radio'}
         id={'radio'}
       />
-      <CustomRadio htmlFor={'radio'}/>
+      <CustomRadio htmlFor={'radio'}>
+        {props.label}
+      </CustomRadio>
     </StyledRadioButton>
   )
 }
 
 RadioButton.propTypes = {
+  label: PropTypes.string,
   style: PropTypes.object
 }
 

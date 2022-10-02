@@ -22,12 +22,15 @@ const themeSettings = {
 export const App = () => {
   return (
     <ThemeProvider theme={themeSettings}>
-      <div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         <Button>Button</Button>
-        <TextField placeholder={'Its a placeholder'}/>
-        <Toggler/>
+        <TextField
+          placeholder={'Its a placeholder'}
+          label={'This is TextField label!'}
+        />
+        <Toggler label={'regulamin akademii językowej'}/>
         <ProgressBar></ProgressBar>
-        <RadioButton></RadioButton>
+        <RadioButton label={'This is Radio button!'}></RadioButton>
         <NavigateButton
           icon={faAngleLeft}
           size={'lg'}

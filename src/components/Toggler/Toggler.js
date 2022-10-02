@@ -9,12 +9,15 @@ const Toggler = (props) => {
         type={'checkbox'}
         id={'checkbox'}
       />
-      <Switch htmlFor={'checkbox'}/>
+      <Switch htmlFor={'checkbox'}>
+        {props.label}
+      </Switch>
     </StyledToggler>
   )
 }
 
 Toggler.propTypes = {
+  label: PropTypes.string,
   style: PropTypes.object
 }
 

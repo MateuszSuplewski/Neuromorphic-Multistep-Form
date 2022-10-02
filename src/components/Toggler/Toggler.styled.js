@@ -1,67 +1,65 @@
 import styled from 'styled-components'
 
 const DefaultStyledToggler = styled.div`
-    --primary-bg: ${({ theme }) => theme.primaryBackground};
-    --shadow-light: ${({ theme }) => theme.shadowColorLight};
-    --shadow-dark: ${({ theme }) => theme.shadowColorDark};
-    --decorative: ${({ theme }) => theme.decorationColor};
-    width: 60px;
-    height: 30px;
-    margin: 12px;
-    display: inline-block;
+  --primary-bg: ${({ theme }) => theme.primaryBackground};
+  --shadow-light: ${({ theme }) => theme.shadowColorLight};
+  --shadow-dark: ${({ theme }) => theme.shadowColorDark};
+  --decorative: ${({ theme }) => theme.decorationColor};
+  height: 30px;
+  margin: 12px;
+  padding-left: 30px;
+  display: inline-block;
 `
 
-const StyledToggler = styled(DefaultStyledToggler)(
-  ({ style }) => style
-)
+const StyledToggler = styled(DefaultStyledToggler)(({ style }) => style)
 
 const Checkbox = styled.input`
-    display: none;
+  display: none;
 
-    &:checked {
-        & ~ label {
-          &::before { 
-            opacity: 1;
-          }
-          &::after {
-            left: 26px;
-          }
-        }
+  &:checked {
+    & ~ label {
+      &::before {
+        background: var(--decorative);
+      }
+      &::after {
+        left: -6px;
+      }
     }
+  }
 `
 
 const Switch = styled.label`
-    cursor: pointer;
-    position: relative;
-    border-radius: 24px;
-    width: 60px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    background: var(--primary-bg);
-    box-shadow: 4px 4px 6px var(--shadow-dark), -4px -4px 6px var(--shadow-light);
+  position: relative;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding-left: 50px; // key to good positioning element with text!
 
-    &::after {
+  &::after {
     content: "";
+    cursor: pointer;
+    left: -2rem;
     width: 34px;
     height: 34px;
-    left: 0;
     position: absolute;
-    background: white;
     border-radius: 50%;
-    transition: all .4s ease;
-    }   
+    background: white;
+    transition: all 0.4s ease;
+  }
 
-    &::before {
+  &::before {
     content: "";
+    cursor: pointer;
+    left: -2rem;
     width: 60px;
     height: 30px;
     position: absolute;
-    border-radius: inherit;
-    background: var(--decorative);
-    opacity: 0;
-    transition: all .4s ease;
-    }
+    border-radius: 24px;
+    background: var(--primary-bg);
+    transition: all 0.4s ease;
+    box-shadow: 4px 4px 6px var(--shadow-dark),
+      -4px -4px 6px var(--shadow-light);
+  }
 `
 
 export { StyledToggler, Checkbox, Switch }
