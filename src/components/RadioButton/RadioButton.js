@@ -2,23 +2,31 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StyledRadioButton, DefaultRadio, CustomRadio } from './RadioButton.styled'
 
-const RadioButton = (props) => {
+const RadioButton = ({ style, value, id, children, name, checked, onChange }) => {
   return (
-    <StyledRadioButton style={props.style}>
+    <StyledRadioButton style={style}>
       <DefaultRadio
-        type={'radio'}
-        id={'radio'}
+        id={id}
+        value = {value}
+        name = {name}
+        checked={checked}
+        onChange={onChange}
       />
-      <CustomRadio htmlFor={'radio'}>
-        {props.label}
+      <CustomRadio htmlFor={id}>
+        {children}
       </CustomRadio>
     </StyledRadioButton>
   )
 }
 
 RadioButton.propTypes = {
-  label: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  value: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  checked: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired
 }
 
 export default RadioButton

@@ -1,13 +1,30 @@
 import styled from 'styled-components'
 
-const DefaultStyledTextField = styled.input`
+const DefaultStyledInputField = styled.div`
     --primary: ${({ theme }) => theme.primaryColor};
     --primary-bg: ${({ theme }) => theme.primaryBackground};
     --decorative: ${({ theme }) => theme.decorationColor};
     --shadow-light: ${({ theme }) => theme.shadowColorLight};
     --shadow-dark: ${({ theme }) => theme.shadowColorDark};
 
-    width: 130px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-self: center;
+    box-sizing: border-box;
+    padding: 8px;
+`
+
+const Input = styled.input.attrs(({ type }) => ({
+  type: type
+}))`
+    --primary: ${({ theme }) => theme.primaryColor};
+    --primary-bg: ${({ theme }) => theme.primaryBackground};
+    --decorative: ${({ theme }) => theme.decorationColor};
+    --shadow-light: ${({ theme }) => theme.shadowColorLight};
+    --shadow-dark: ${({ theme }) => theme.shadowColorDark};
+
+    width: 40%;
     height: 35px;
     padding: 3px 20px;
     margin: 12px;
@@ -34,10 +51,12 @@ const DefaultStyledTextField = styled.input`
 const Label = styled.label`
     display: flex;
     align-items: center;
+    color: var(--decorative);
+    font-weight: bold;
 `
 
-const StyledTextField = styled(DefaultStyledTextField)(
+const StyledInputField = styled(DefaultStyledInputField)(
   ({ style }) => style
 )
 
-export { StyledTextField, Label }
+export { StyledInputField, Label, Input }

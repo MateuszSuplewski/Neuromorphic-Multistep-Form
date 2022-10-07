@@ -3,22 +3,27 @@ import PropTypes from 'prop-types'
 import StyledNavigateButton from './NavigateButton.styled'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const NavigateButton = (props) => {
+const NavigateButton = ({ style, icon, size, onClick, type = 'button' }) => {
   return (
-    <StyledNavigateButton style={props.style}>
+    <StyledNavigateButton
+      style={style}
+      onClick={onClick}
+      type={type}
+    >
       <FontAwesomeIcon
-        icon={props.icon}
-        size={props.size}
+        icon={icon}
+        size={size}
       />
     </StyledNavigateButton>
   )
 }
 
 NavigateButton.propTypes = {
-  children: PropTypes.node,
   style: PropTypes.object,
-  icon: PropTypes.object,
-  size: PropTypes.string
+  icon: PropTypes.object.isRequired,
+  size: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
+  type: PropTypes.string
 }
 
 export default NavigateButton

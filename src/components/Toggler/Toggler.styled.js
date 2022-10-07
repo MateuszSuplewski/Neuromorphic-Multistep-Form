@@ -5,15 +5,19 @@ const DefaultStyledToggler = styled.div`
   --shadow-light: ${({ theme }) => theme.shadowColorLight};
   --shadow-dark: ${({ theme }) => theme.shadowColorDark};
   --decorative: ${({ theme }) => theme.decorationColor};
-  height: 30px;
+  height: 25px;
   margin: 12px;
   padding-left: 30px;
   display: inline-block;
+  width: 100%;
 `
 
 const StyledToggler = styled(DefaultStyledToggler)(({ style }) => style)
 
-const Checkbox = styled.input`
+const Checkbox = styled.input.attrs((props) => ({
+  type: 'checkbox',
+  checked: props.checked && 'checked'
+}))`
   display: none;
 
   &:checked {
@@ -22,15 +26,16 @@ const Checkbox = styled.input`
         background: var(--decorative);
       }
       &::after {
-        left: -6px;
+        left: -11px;
       }
     }
   }
 `
 
 const Switch = styled.label`
+ color: var(--decorative);
   position: relative;
-  height: 30px;
+  height: 25px;
   display: flex;
   align-items: center;
   padding-left: 50px; // key to good positioning element with text!
@@ -39,8 +44,8 @@ const Switch = styled.label`
     content: "";
     cursor: pointer;
     left: -2rem;
-    width: 34px;
-    height: 34px;
+    width: 29px;
+    height: 29px;
     position: absolute;
     border-radius: 50%;
     background: white;
@@ -51,8 +56,8 @@ const Switch = styled.label`
     content: "";
     cursor: pointer;
     left: -2rem;
-    width: 60px;
-    height: 30px;
+    width: 50px;
+    height: 25px;
     position: absolute;
     border-radius: 24px;
     background: var(--primary-bg);

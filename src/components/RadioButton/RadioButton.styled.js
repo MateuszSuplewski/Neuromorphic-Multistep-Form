@@ -13,7 +13,9 @@ const DefaultStyledRadioButton = styled.div`
   display: inline-block;
 `
 
-const DefaultRadio = styled.input`
+const DefaultRadio = styled.input.attrs(() => ({
+  type: 'radio'
+}))`
   display: none;
   &:checked {
     & ~ label::before {

@@ -1,28 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { StyledProgressBar, Progression, ProgressBox } from './ProgressBar.styled'
 
 const ProgressBar = (props) => {
-  const [actualWidth, setWidth] = useState(0)
-  useEffect(() => {
-    setInterval(() => {
-      setWidth((actualWidth) => Number(actualWidth) + 1)
-    }, 50)
-  }, [])
-
-  const percentage = Math.floor((actualWidth * 100) / 600) + '%' // 600 - width of the progressBar
+  const { completed, maxRequired } = props
+  const percentageNumber = Math.floor((completed * 100) / maxRequired)
+  const progressBarEl = useRef(null)
 
   return (
-    <StyledProgressBar style={props.style}>
-      <Progression width={`${actualWidth}px`}/>
-      <ProgressBox width={`${actualWidth}`}>{percentage}</ProgressBox>
+    <StyledProgressBar
+      style={props.style}
+      ref={progressBarEl}
+    >
+      <Progression
+        width={`${(completed / maxRequired) * 100}%`}
+      />
+      <ProgressBox width={progressBarEl.current && (completed / maxRequired) * progressBarEl.current.offsetWidth}>{percentageNumber + '%'}</ProgressBox>
     </StyledProgressBar>
   )
 }
 
 ProgressBar.propTypes = {
   children: PropTypes.node,
-  style: PropTypes.object
+  style: PropTypes.object,
+  completed: PropTypes.number,
+  maxRequired: PropTypes.number
 }
 
 export default ProgressBar

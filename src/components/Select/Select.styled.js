@@ -9,15 +9,16 @@ const DefaultStyledSelect = styled.div`
   --shadow-dark: ${({ theme }) => theme.shadowColorDark};
 
   cursor: pointer;
-  width: 130px;
-  height: 35px;
-  padding: 0 20px;
+
+  width: 50%;
+  padding: 10px 20px;
   margin: 12px;
   border-radius: 26px;
   font-weight: bold;
   display: flex;
+  max-width: 450px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: ${({ isIconSelected }) => isIconSelected ? 'space-between' : 'center'};
   position: relative;
   box-sizing: border-box;
   color: var(--primary);
@@ -36,12 +37,16 @@ const DefaultStyledSelect = styled.div`
 const StyledSelect = styled(DefaultStyledSelect)(({ style }) => style)
 
 const OptionsList = styled.ul`
-  list-style: none;
+  z-index: 2;
   width: 100%;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
   top: 0px;
   left: 0;
   margin: 0;
-  padding: 30px 6px 10px 6px;
+  background-color: var(--primary-bg);
+  padding: 0px 6px 10px 6px;
   border-radius: 22px;
   position: absolute;
   box-sizing: border-box;
@@ -52,6 +57,7 @@ const OptionsList = styled.ul`
 `
 
 const Option = styled.li`
+  width: 100%;
   padding: 6px 10px;
   text-align: center;
   transition: 0.3s ease;
@@ -70,6 +76,7 @@ const Option = styled.li`
 
 const SelectIcon = styled(FontAwesomeIcon)`
   transition: 0.3s ease;
+  margin-left: 15px;
   ${({ $isListActive }) => $isListActive && css`
       transform: rotate(90deg);
     `}

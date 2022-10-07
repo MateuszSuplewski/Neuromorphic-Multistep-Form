@@ -7,16 +7,16 @@ const DefaultStyledProgressBar = styled.div`
     --shadow-light: ${({ theme }) => theme.shadowColorLight};
     --shadow-dark: ${({ theme }) => theme.shadowColorDark};
 
-    width: 600px;
+    width: 80%;
+    max-width: 800px;
     height: 12px;
     border-radius: 26px;
     color: var(--primary);
     background-color: var(--primary-bg);
     box-shadow:  4px 4px 6px var(--shadow-dark), -4px -4px 6px var(--shadow-light);
-    margin: 12px 12px 40px 12px;
+    margin: 12px 0px 40px 0px;
     transition: .3s ease;
     position: relative;
-    display: inline-block;
 `
 
 const Progression = styled.div`
@@ -24,6 +24,7 @@ const Progression = styled.div`
     height: 12px;
     border-radius: 26px;
     background-color: var(--decorative);
+    transition: 1s ease;
 `
 
 const ProgressBox = styled.div`
@@ -38,6 +39,7 @@ const ProgressBox = styled.div`
   font-weight: bold;
   box-shadow:  4px 4px 6px var(--shadow-dark), -4px -4px 6px var(--shadow-light);
   border-radius: 6px;
+  transition: 1s ease;
   transform: ${props => `translateX(${props.width - 25}px)`};
 `
 

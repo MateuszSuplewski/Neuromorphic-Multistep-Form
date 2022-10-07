@@ -1,35 +1,41 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { StyledSelect, OptionsList, Option, SelectIcon } from './Select.styled'
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
-const Select = (props) => {
-  const [selected, setSelected] = useState(props.startValue)
-  const [isListActive, setListActivity] = useState(false)
+const Select = ({ optionsList, startValue = 'Select', style, changeOption, name, selectIcon, value }) => {
+  const [selected, setSelected] = useState(value || startValue)
+  const [isListActive, toggleListActivity] = useState(false)
 
   useEffect(() => {
-    setListActivity(false)
+    toggleListActivity(false)
+    if (selected !== startValue) changeOption(selected, name)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected])
 
   return (
     <StyledSelect
-      style={props.style}
+      style={style}
       $isListActive={isListActive}
-      onClick={() => setListActivity((status) => setListActivity(!status))}
+      onClick={() => toggleListActivity((status) => !status)}
+      isIconSelected={selectIcon}
     >
       {selected}
-      <SelectIcon
-        icon={faAngleRight}
-        $isListActive={isListActive}
-      />
+      {
+        selectIcon && (
+          <SelectIcon
+            icon={selectIcon}
+            $isListActive={isListActive}
+          />
+        )
+      }
       {
         isListActive && (
           <OptionsList $isListActive={isListActive}>
             {
-              props.optionsList.map((option, index) => (
+              optionsList.map((option, index) => (
                 <Option
                   key={index}
-                  onClick={() => setSelected(option)}
+                  onClick={() => { setSelected(option) }}
                 >
                   {option}
                 </Option>
@@ -43,10 +49,13 @@ const Select = (props) => {
 }
 
 Select.propTypes = {
-  optionsList: PropTypes.arrayOf(PropTypes.string),
+  optionsList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  changeOption: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
   startValue: PropTypes.string,
-  children: PropTypes.node,
-  style: PropTypes.object
+  style: PropTypes.object,
+  selectIcon: PropTypes.object,
+  value: PropTypes.string
 }
 
 export default Select
