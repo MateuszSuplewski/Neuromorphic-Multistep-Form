@@ -3,28 +3,28 @@ import PropTypes from 'prop-types'
 import { StyledProgressBar, Progression, ProgressBox } from './ProgressBar.styled'
 
 const ProgressBar = (props) => {
-  const { completed, maxRequired } = props
-  const percentageNumber = Math.floor((completed * 100) / maxRequired)
+  const { completedRequiredFields, requiredFields, style } = props
+  const percentageOfCompletedFields = Math.floor((completedRequiredFields * 100) / requiredFields)
   const progressBarEl = useRef(null)
+  const ActualWidthOfProgression = progressBarEl.current && (completedRequiredFields / requiredFields) * progressBarEl.current.offsetWidth
 
   return (
     <StyledProgressBar
-      style={props.style}
+      style={style}
       ref={progressBarEl}
     >
-      <Progression
-        width={`${(completed / maxRequired) * 100}%`}
-      />
-      <ProgressBox width={progressBarEl.current && (completed / maxRequired) * progressBarEl.current.offsetWidth}>{percentageNumber + '%'}</ProgressBox>
+      <Progression width={percentageOfCompletedFields}/>
+      <ProgressBox width={ActualWidthOfProgression}>
+        {`${percentageOfCompletedFields}%`}
+      </ProgressBox>
     </StyledProgressBar>
   )
 }
 
 ProgressBar.propTypes = {
-  children: PropTypes.node,
   style: PropTypes.object,
-  completed: PropTypes.number,
-  maxRequired: PropTypes.number
+  completedRequiredFields: PropTypes.number,
+  requiredFields: PropTypes.number
 }
 
 export default ProgressBar

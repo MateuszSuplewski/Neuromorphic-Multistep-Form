@@ -17,13 +17,22 @@ const DefaultStyledFieldWrapper = styled.div`
     box-sizing: border-box;
     padding: 8px;
     align-items: flex-start;
- 
+  
+    @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
 const Title = styled.p`
  color: var(--decorative);
 width: 100%;
 text-align: left;
+align-self: center;
+@media (max-width: 768px) {
+    text-align: center;
+    margin: 0;
+  }
 `
 
 const StyledFieldWrapper = styled(DefaultStyledFieldWrapper)(

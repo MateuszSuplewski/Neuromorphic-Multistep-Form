@@ -14,7 +14,9 @@ const pageOneData = {
       label: 'Imie i nazwisko',
       name: 'nameAndSurname',
       type: 'text',
-      isRequired: true
+      isRequired: true,
+      pattern: /^([a-ząćęłńóśźż]{2,})\s([a-ząćęłńóśźż]{2,})$/i,
+      error: 'Dane w polu Imie i nazwisko są niepoprawne - Ciąg minimum 4 znaków rozdzielony spacją'
     },
     {
       fieldFor: 'input',
@@ -22,14 +24,16 @@ const pageOneData = {
       label: 'Email',
       name: 'email',
       type: 'text',
-      isRequired: true
+      isRequired: true,
+      pattern: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/i,
+      error: 'Dane w polu Email są niepoprawne - Przykład.: example@domena.com'
     },
     {
       fieldFor: 'select',
       name: 'selectedGender',
       startValue: 'Select',
       optionsList: genders,
-      question: 'Płeć:',
+      question: 'Płeć',
       selectIcon: faAngleRight,
       isRequired: true
     },
@@ -38,7 +42,7 @@ const pageOneData = {
       name: 'selectedLanguage',
       startValue: 'Select',
       optionsList: languages,
-      question: 'Wybierz język którego chcesz się nauczyć:',
+      question: 'Wybierz język którego chcesz się nauczyć',
       selectIcon: faAngleRight,
       isRequired: true
     }
@@ -71,22 +75,11 @@ const pageTwoData = {
 const pageThreeData = {
   fields: [
     {
-      fieldFor: 'toggler',
-      label: 'Akceptuje regulamin akademii językowej',
-      name: 'acceptRegulations',
-      isRequired: true
-    },
-    {
-      fieldFor: 'toggler',
-      label: 'Chce otrzymywać informacje o przyszłych promocjach oraz ofertach',
-      name: 'acceptFutureOffers'
-    },
-    {
       fieldFor: 'select',
       name: 'selectedWeekHours',
       startValue: 'Select',
       optionsList: weekHours,
-      question: 'Ile godzin w tygodniu jesteś w stanie poświęcić na naukę?',
+      question: 'Ile godzin w tygodniu jesteś w stanie poświęcić na naukę',
       selectIcon: faAngleRight,
       isRequired: true
     },
@@ -95,7 +88,7 @@ const pageThreeData = {
       name: 'selectedLessonIdea',
       startValue: 'Select',
       optionsList: lessonIdeas,
-      question: 'Jaki rodzaj nauki preferujesz?',
+      question: 'Jaki rodzaj nauki preferujesz',
       selectIcon: faAngleRight,
       isRequired: true
     },
@@ -103,7 +96,20 @@ const pageThreeData = {
       fieldFor: 'radio',
       name: 'desiredLevel',
       radiosFields: advanceLevels,
-      question: 'Do jakiego poziomu chciałbyś podnieść swój język?'
+      question: 'Do jakiego poziomu chciałbyś podnieść swój język'
+    },
+    {
+      fieldFor: 'toggler',
+      label: 'Akceptuje regulamin akademii językowej',
+      name: 'acceptRegulations',
+      isRequired: true,
+      pattern: /true/,
+      error: 'hello'
+    },
+    {
+      fieldFor: 'toggler',
+      label: 'Chce otrzymywać informacje o przyszłych promocjach oraz ofertach',
+      name: 'acceptFutureOffers'
     }
   ]
 }
@@ -119,10 +125,10 @@ const defaultInitialData = {
   selectedWeekHours: '',
   selectedLessonIdea: '',
   desiredLevel: advanceLevels[0],
-  acceptRegulations: false,
-  acceptFutureOffers: false,
-  page: 1,
-  completed: 0
+  acceptRegulations: 'false',
+  acceptFutureOffers: 'false',
+  pageNumber: 1,
+  completedRequiredFields: 0
 }
 
 const formData = [pageOneData, pageTwoData, pageThreeData]

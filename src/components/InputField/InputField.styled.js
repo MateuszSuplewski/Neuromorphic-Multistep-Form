@@ -13,6 +13,11 @@ const DefaultStyledInputField = styled.div`
     align-self: center;
     box-sizing: border-box;
     padding: 8px;
+
+    @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
 const Input = styled.input.attrs(({ type }) => ({
@@ -28,6 +33,7 @@ const Input = styled.input.attrs(({ type }) => ({
     height: 35px;
     padding: 3px 20px;
     margin: 12px;
+    min-width: 200px;
     border-radius: 26px;
     text-align: center;
     font-weight: bold;

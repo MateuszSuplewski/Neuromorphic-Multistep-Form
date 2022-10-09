@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import StyledNavigateButton from './NavigateButton.styled'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const NavigateButton = ({ style, icon, size, onClick, type = 'button' }) => {
+const NavigateButton = ({ style, icon, size = 'lg', onClick, type = 'button' }) => {
   return (
     <StyledNavigateButton
       style={style}

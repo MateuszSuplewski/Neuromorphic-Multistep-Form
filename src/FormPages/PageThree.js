@@ -1,79 +1,62 @@
 import React, { useContext } from 'react'
 import formContext from '../context'
-import RadioButton from '../components/RadioButton'
 import FieldWrapper from '../components/FieldWrapper'
 import { pageThreeData } from '../pagesData'
 import Select from '../components/Select'
 import Toggler from '../components/Toggler'
+import FormPage from '../components/FormPage/FormPage'
+import RadiosWrapper from '../components/RadiosWrapper'
 
 export const PageThree = (props) => {
-  const { formState, changeOption, changeField, toggleInput } =
-    useContext(formContext)
+  const { formState, changeOption, toggleInput } = useContext(formContext)
   return (
-    <div style={{ width: '80%', maxWidth: '800px' }}>
+    <FormPage>
       {pageThreeData.fields.map(
-        (field, index) =>
-          field.fieldFor === 'select' && (
+        ({ fieldFor, question, startValue, optionsList, selectIcon, name }, index) =>
+          fieldFor === 'select' && (
             <FieldWrapper
-              question={field.question}
+              question={question}
               key={index}
             >
               <Select
-                startValue={field.startValue}
-                optionsList={field.optionsList}
-                selectIcon={field.selectIcon}
+                startValue={startValue}
+                optionsList={optionsList}
+                selectIcon={selectIcon}
                 changeOption={changeOption}
-                name={field.name}
-                value={formState[field.name]}
+                name={name}
+                value={formState[name]}
               />
             </FieldWrapper>
           )
       )}
       {pageThreeData.fields.map(
-        (field, index1) =>
-          field.fieldFor === 'radio' && (
+        ({ fieldFor, question, radiosFields, name }, index1) =>
+          fieldFor === 'radio' && (
             <FieldWrapper
-              question={field.question}
+              question={question}
               key={index1}
               style={{ flexWrap: 'wrap' }}
             >
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'flex-start',
-                  width: '100%',
-                  flexWrap: 'wrap'
-                }}
-              >
-                {field.radiosFields.map((radio, index2) => (
-                  <RadioButton
-                    key={`${[field.name]} ${index2}`}
-                    value={radio}
-                    name={field.name}
-                    checked={radio === formState[field.name]}
-                    onChange={(e) => changeField(e)}
-                    id={`${[field.name]} ${index2}`}
-                  >
-                    {radio}
-                  </RadioButton>
-                ))}
-              </div>
+              <RadiosWrapper
+                radioFields={radiosFields}
+                name={name}
+              />
             </FieldWrapper>
           )
       )}
       {pageThreeData.fields.map(
-        (field, index) =>
-          field.fieldFor === 'toggler' && (
+        ({ fieldFor, label, name }, index) =>
+          fieldFor === 'toggler' && (
             <Toggler
               key={index}
-              label={field.label}
-              value={formState[field.name]}
-              name={field.name}
-              onChange={(e) => toggleInput(e)}
+              label={label}
+              value={formState[name]}
+              name={name}
+              onChange={toggleInput}
             />
           )
       )}
-    </div>
+    </FormPage>
   )
 }
 

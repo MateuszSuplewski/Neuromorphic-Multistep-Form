@@ -5,11 +5,11 @@ const DefaultStyledToggler = styled.div`
   --shadow-light: ${({ theme }) => theme.shadowColorLight};
   --shadow-dark: ${({ theme }) => theme.shadowColorDark};
   --decorative: ${({ theme }) => theme.decorationColor};
-  height: 25px;
   margin: 12px;
   padding-left: 30px;
   display: inline-block;
   width: 100%;
+  box-sizing: border-box;
 `
 
 const StyledToggler = styled(DefaultStyledToggler)(({ style }) => style)
@@ -35,10 +35,9 @@ const Checkbox = styled.input.attrs((props) => ({
 const Switch = styled.label`
  color: var(--decorative);
   position: relative;
-  height: 25px;
   display: flex;
   align-items: center;
-  padding-left: 50px; // key to good positioning element with text!
+  padding-left: 35px; // key to good positioning element with text!
 
   &::after {
     content: "";

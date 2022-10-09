@@ -5,7 +5,8 @@ const DefaultStyledForm = styled.form`
   --shadow-light: ${({ theme }) => theme.shadowColorLight};
   --shadow-dark: ${({ theme }) => theme.shadowColorDark};
   --decorative: ${({ theme }) => theme.decorationColor};
-  max-width: 800px;
+  max-width: 1000px;
+  width: 90vw;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

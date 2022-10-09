@@ -1,20 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import StyledPage from './Page.styled'
+import StyledFormPage from './FormPage.styled'
 
-const Page = (props) => {
+const FormPage = (props) => {
   return (
-    <StyledPage
+    <StyledFormPage
       style={props.style}
     >
       {props.children}
-    </StyledPage>
+    </StyledFormPage>
   )
 }
 
-Page.propTypes = {
+FormPage.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object
 }
 
-export default Page
+export default FormPage

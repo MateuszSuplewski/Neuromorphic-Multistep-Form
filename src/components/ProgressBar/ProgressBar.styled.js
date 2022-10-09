@@ -17,10 +17,14 @@ const DefaultStyledProgressBar = styled.div`
     margin: 12px 0px 40px 0px;
     transition: .3s ease;
     position: relative;
+
+    @media (max-width: 768px) {
+    width: 95%;
+  }
 `
 
 const Progression = styled.div`
-    width: ${({ width }) => width};
+    width: ${({ width }) => `${width}%`};
     height: 12px;
     border-radius: 26px;
     background-color: var(--decorative);

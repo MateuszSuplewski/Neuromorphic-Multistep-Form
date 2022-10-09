@@ -21,6 +21,7 @@ const DefaultStyledSelect = styled.div`
   justify-content: ${({ isIconSelected }) => isIconSelected ? 'space-between' : 'center'};
   position: relative;
   box-sizing: border-box;
+  min-width: 200px;
   color: var(--primary);
   background-color: var(--primary-bg);
   ${({ $isListActive }) => !$isListActive && css`

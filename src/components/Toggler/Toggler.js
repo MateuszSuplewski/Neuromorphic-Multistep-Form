@@ -7,9 +7,9 @@ const Toggler = ({ style, name, label, onChange, value }) => {
     <StyledToggler style={style}>
       <Checkbox
         id={name}
-        onChange={onChange}
+        onChange={(e) => onChange(e, value)}
         name={name}
-        checked={value}
+        checked={value === 'true'} // value === 'true' ? true : false
       />
       <Switch htmlFor={name}>
         {label}
@@ -23,7 +23,7 @@ Toggler.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.bool
+  value: PropTypes.string
 }
 
 export default Toggler
