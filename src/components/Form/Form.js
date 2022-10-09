@@ -7,6 +7,7 @@ import formContext from '../../context'
 import PageOne from '../../FormPages/PageOne'
 import PageTwo from '../../FormPages/PageTwo'
 import PageThree from '../../FormPages/PageThree'
+import PageLast from '../../FormPages/PageLast'
 import themeSettings from '../../theme'
 import FormNavigation from '../FormNavigation.js'
 import NavigateButton from '../NavigateButton'
@@ -46,8 +47,10 @@ const Form = (props) => {
   const HandleChangePageToNext = () => {
     const pageErrors = Validate(formData, state, true)
     setErrors(pageErrors)
+
     const numberOfCompletedFields = getNumberOfCompletedFormFields(formData, state)
     completeField(numberOfCompletedFields)
+
     if (pageErrors.length === 0) changePage(1)
   }
 
@@ -61,6 +64,11 @@ const Form = (props) => {
       finalValue = 'true'
     }
     dispatch({ type: 'toggleInput', key: e.target.name, value: finalValue })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    HandleChangePageToNext()
   }
 
   useEffect(() => {
@@ -79,12 +87,15 @@ const Form = (props) => {
     state.acceptRegulations
   ])
 
-  const pages = [PageOne, PageTwo, PageThree]
-  const ActualPage = pages[state.pageNumber - 1]
+  const pages = [PageOne, PageTwo, PageThree, PageLast]
+  const CurrentPage = pages[state.pageNumber - 1]
 
   return (
     <ThemeProvider theme={themeSettings}>
-      <StyledForm>
+      <StyledForm
+        noValidate
+        onSubmit={(e) => handleSubmit(e)}
+      >
         <formContext.Provider
           value={{
             formState: state,
@@ -94,33 +105,41 @@ const Form = (props) => {
             toggleInput
           }}
         >
-          <ProgressBar
-            completedRequiredFields={state.completedRequiredFields}
-            requiredFields={getNumberOfRequiredFormFields(formData)}
-          />
-          <ActualPage/>
-          <FormNavigation>
-            {state.pageNumber !== 1 && (
-              <NavigateButton
-                icon={faAngleLeft}
-                size={'lg'}
-                onClick={() => HandleChangePageToPrev()}
+          {
+            state.pageNumber !== pages.length && (
+              <ProgressBar
+                completedRequiredFields={state.completedRequiredFields}
+                requiredFields={getNumberOfRequiredFormFields(formData)}
               />
-            )}
-            {state.pageNumber === pages.length && (
+            )
+          }
+          <CurrentPage/>
+          <FormNavigation>
+            {
+              (state.pageNumber !== 1 && state.pageNumber !== pages.length) ?
+                <NavigateButton
+                  icon={faAngleLeft}
+                  size={'lg'}
+                  onClick={() => HandleChangePageToPrev()}
+                />
+                : null
+              }
+            {state.pageNumber === (pages.length - 1) && (
             <Button
-              onClick={() => HandleChangePageToNext()}
+              type={'submit'}
             >
               Wyślij
             </Button>
             )}
-            {state.pageNumber !== pages.length && (
+            {
+            (state.pageNumber !== pages.length && state.pageNumber !== (pages.length - 1)) ?
               <NavigateButton
                 icon={faAngleRight}
                 size={'lg'}
                 onClick={() => HandleChangePageToNext()}
               />
-            )}
+              : null
+            }
           </FormNavigation>
           {
             errors.length > 0 ? <Errors errors={errors}></Errors> : null

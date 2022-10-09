@@ -114,6 +114,15 @@ const pageThreeData = {
   ]
 }
 
+const FormSendedPageData = {
+  header: 'Formularz został wysłany!',
+  paragraphs: [
+    'Dziękujemy za wypełnienie formularza',
+    'Oferta dostosowana do twoich potrzeb zostanie wygenerowana oraz wysłana w przeciągu 24h na podany w formularzu adres email',
+    'Po więcej informacji lub szczególnych pytań prosimy dzwonić do naszego biura pod numerem 523-123-553'
+  ]
+}
+
 const defaultInitialData = {
   nameAndSurname: '',
   email: '',
@@ -133,4 +142,4 @@ const defaultInitialData = {
 
 const formData = [pageOneData, pageTwoData, pageThreeData]
 
-export { pageOneData, pageTwoData, defaultInitialData, pageThreeData, formData }
+export { pageOneData, pageTwoData, defaultInitialData, pageThreeData, formData, FormSendedPageData }
